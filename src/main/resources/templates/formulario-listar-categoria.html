@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/listarProducto.css}" />
+    <title>Operaciones Crud | Listado Categorias</title>
+</head>
+
+<body>
+    <div layout:fragment="content">
+        <div class="contenedor-listar">
+            <div class="contenedor-opciones">
+                <form class="contenedor-buscar" method="get">
+                    <span class="material-symbols-outlined">search</span>
+                    <input type="search" name="busqueda" placeholder="Buscar producto" />
+                </form>
+
+                <div class="contenedor-acciones">
+                    <a href="/categoria/formulario" class="btn btn-primary">
+                        <span class="material-symbols-outlined">add</span>Añadir Categoria
+                    </a>
+                    <form method="get" action="/categoria/listar">
+                        <div class="filtro-contenedor">
+                            <span class="material-symbols-outlined">filter_list</span>
+                            <select name="estado" th:value="${estado}" onchange="this.form.submit()">
+                                <option value="" th:selected="${estado == null or estado == ''}">Todos</option>
+                                <option value="D" th:selected="${estado == 'D'}">Desactivados</option>
+                                <option value="A" th:selected="${estado == 'A'}">Activados</option>
+                            </select>
+                        </div>
+                    </form>
+
+                    <button class="btn">Acciones</button>
+                </div>
+            </div>
+            <div class="contendor-tabla">
+                <table class="tabla-diseño">
+                    <thead>
+                        <tr>
+                            <th><input type="checkbox" /></th>
+                            <th>Nombre Categoria</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="categoria : ${listarCategoria}">
+                            <td><input type="checkbox" /></td>
+                            <td>
+                                <span th:text="${categoria.nombreCategoria}"></span>
+                            </td>
+                            <td th:text="${categoria.estado}"
+                                th:class="'estado ' +(${categoria.estado} == 'A' ? 'activado' : 'inactivo')">
+                            </td>
+                            <td>
+                                <a th:href="@{'/categoria/detalle/' +${categoria.idCategoria}}"><span
+                                        class="material-symbols-outlined">preview</span></a>
+                                <a th:href="@{'/categoria/editar/' +${categoria.idCategoria}}"><span
+                                        class="material-symbols-outlined editar">edit_square</span></a>
+                                <a th:href="@{'/categoria/desactivar/'+${categoria.idCategoria}}"><span
+                                        class="material-symbols-outlined basura">delete</span></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="pagination-container">
+                    <a th:if="${paginaActual > 0}" th:href="@{/categoria/listar(pagina=${paginaActual - 1}, estado=${estado})}"
+                        class="page-button si">Prev</a>
+
+                    <span th:if="${inicio > 0}">
+                        <a th:href="@{/categoria/listar(pagina=0, estado=${estado})}" class="page-button">1</a>
+                        <span class="dots">...</span>
+                    </span>
+
+                    <span th:each="i : ${#numbers.sequence(inicio, fin)}">
+                        <a th:href="@{/categoria/listar(pagina=${i}, estado=${estado})}" th:text="${i + 1}"
+                            th:class="'page-button numeros' + (${i} == ${paginaActual} ? 'active' : '')"></a>
+                    </span>
+
+                    <span th:if="${fin < totalPaginas - 1}">
+                        <span class="dots">...</span>
+                        <a th:href="@{/categoria/listar(pagina=${totalPaginas - 1}, estado=${estado})}" th:text="${totalPaginas}"
+                            class="page-button"></a>
+                    </span>
+
+                    <a th:if="${paginaActual < totalPaginas - 1}"
+                        th:href="@{/categoria/listar(pagina=${paginaActual + 1}, estado=${estado})}" class="page-button si">Next</a>
+                </div>
+            </div>
+
+        </div>
+</body>
+
+</html>

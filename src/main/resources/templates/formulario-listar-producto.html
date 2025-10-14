@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/listarProducto.css}" />
+    <title>Operaciones Crud | Listado Productos</title>
+</head>
+
+<body>
+    <div layout:fragment="content">
+        <div class="contenedor-listar">
+            <div class="contenedor-opciones">
+                <form class="contenedor-buscar" method="get">
+                    <span class="material-symbols-outlined">search</span>
+                    <input type="search" name="busqueda" placeholder="Buscar producto" />
+                </form>
+
+                <div class="contenedor-acciones">
+                    <a href="/producto/formulario" class="btn btn-primary">
+                        <span class="material-symbols-outlined">add</span>Añadir Producto
+                    </a>
+                    <form method="get" action="/producto/listar">
+                        <div class="filtro-contenedor">
+                            <span class="material-symbols-outlined">filter_list</span>
+                            <select name="estado" th:value="${estado}" onchange="this.form.submit()">
+                                <option value="" th:selected="${estado == null or estado == ''}">Todos</option>
+                                <option value="D" th:selected="${estado == 'D'}">Desactivados</option>
+                                <option value="A" th:selected="${estado == 'A'}">Activados</option>
+                            </select>
+                        </div>
+                    </form>
+
+                    <button class="btn">Acciones</button>
+                </div>
+            </div>
+            <div class="contendor-tabla">
+                <table class="tabla-diseño">
+                    <thead>
+                        <tr>
+                            <th><input type="checkbox" /></th>
+                            <th>Nombre Producto</th>
+                            <th>Categoria</th>
+                            <th>Marca</th>
+                            <th>Color</th>
+                            <th>Stock</th>
+                            <th>Precio</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="producto : ${listarProductos}">
+                            <td><input type="checkbox" /></td>
+                            <td>
+                                <img th:src="@{${producto.imagen}}" class="imagen-producto" />
+                                <span th:text="${producto.nombreProducto}"></span>
+                            </td>
+                            <td th:text="${producto.categoria.nombreCategoria}"></td>
+                            <td th:text="${producto.marca}"></td>
+                            <td th:text="${producto.color}"></td>
+                            <td>
+                                <span th:text="${producto.stockProducto}"
+                                    th:class="'stock ' + (${producto.stockProducto} <= 3 ? 'low' : 'ok')"></span>
+                            </td>
+                            <td th:text="${producto.precioUni}"></td>
+                            <td th:text="${producto.estado}"
+                                th:class="'estado ' +(${producto.estado} == 'A' ? 'activado' : 'inactivo')"></td>
+                            <td>
+                                <a th:href="@{'/producto/detalle/' +${producto.idProducto}}"><span
+                                        class="material-symbols-outlined">preview</span></a>
+                                <a th:href="@{'/producto/editar/' +${producto.idProducto}}"><span
+                                        class="material-symbols-outlined editar">edit_square</span></a>
+                                <a th:href="@{'/producto/desactivar/'+${producto.idProducto}}"><span
+                                        class="material-symbols-outlined basura">delete</span></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="pagination-container">
+                    <a th:if="${paginaActual > 0}" th:href="@{/producto/listar(pagina=${paginaActual - 1}, estado=${estado})}"
+                        class="page-button si">Prev</a>
+
+                    <span th:if="${inicio > 0}">
+                        <a th:href="@{/producto/listar(pagina=0, estado=${estado})}" class="page-button">1</a>
+                        <span class="dots">...</span>
+                    </span>
+
+                    <span th:each="i : ${#numbers.sequence(inicio, fin)}">
+                        <a th:href="@{/producto/listar(pagina=${i}, estado=${estado})}" th:text="${i + 1}"
+                            th:class="'page-button numeros' + (${i} == ${paginaActual} ? 'active' : '')"></a>
+                    </span>
+
+                    <span th:if="${fin < totalPaginas - 1}">
+                        <span class="dots">...</span>
+                        <a th:href="@{/producto/listar(pagina=${totalPaginas - 1}, estado=${estado})}" th:text="${totalPaginas}"
+                            class="page-button"></a>
+                    </span>
+
+                    <a th:if="${paginaActual < totalPaginas - 1}"
+                        th:href="@{/producto/listar(pagina=${paginaActual + 1}, estado=${estado})}" class="page-button si">Next</a>
+                </div>
+            </div>
+
+        </div>
+</body>
+
+</html>

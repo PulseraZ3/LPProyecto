@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/registroProducto.css}" />
+    <title>Operaciones Crud | Editar Categorias</title>
+</head>
+
+<body>
+    <form th:action="@{/categoria/guardar}" th:object="${categoria}" method="post" enctype="multipart/form-data"
+        layout:fragment="content">
+        <div class="contenedor-uno">
+            <div>
+                <label for="idCategoria">Codigo Categoria</label>
+                <input type="text" id="idCategoria" th:field="*{idCategoria}" 
+                    placeholder="Codigo Categoria" readonly="readonly">
+            </div>
+            <div>
+                <label for="nombreCategoria">Nombre Categoria</label>
+                <input type="text" id="nombreCategoria" th:field="*{nombreCategoria}" required
+                    placeholder="Nombre categoria">
+            </div>
+        </div>
+        <div class="contenedor-tres">
+            <label for="descripcion">Descripción:</label>
+            <textarea id="descripcion" th:field="*{descripcion}" required
+                placeholder="Colocar descripción del productos"></textarea>
+        </div>
+        <div class="contenedor-seis">
+            <label for="estado">Estado:</label>
+            <select id="estado" th:field="*{estado}" required>
+                <option value="A">Activo</option>
+                <option value="D">Desactivado</option>
+            </select>
+        </div>
+        <div class="contenedor-cinco">
+            <button type="submit">Actualizar</button>
+            <div th:if="${mensaje}" class="alert alert-success" th:text="${mensaje}"></div>
+        </div>
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,127 @@
+
+
+form{
+    display:flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    padding: 1rem;
+    font-family: "Roboto", sans-serif;
+    font-size:0.9rem;
+    font-weight: bold;
+}
+.contenedor-uno,
+.contenedor-dos,
+.contenedor-tres,
+.contenedor-cuatro,
+.contenedor-cinco {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 1rem;
+}
+  .contenedor-uno > div,
+  .contenedor-dos > div{
+    flex: 1;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contenedor-tres,
+  .contenedor-cuatro {
+    flex-direction: column;
+  }
+  textarea {
+    resize: none;
+}
+form label{
+    margin-bottom: 0.2rem;
+}
+form input[type="text"],input[type="number"],select{
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: white;
+}
+
+form textarea{
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: white;
+    font-family: "Roboto", sans-serif;
+    font-size: 0.9rem;
+}
+.titulo-dropzone {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.dropzone {
+    border: 2px dashed #ccc;
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+    position: relative;
+}
+
+.dropzone:hover {
+    border-color: #999;
+    background-color: #f1f1f1;
+}
+
+.dropzone input[type="file"] {
+    display: none;
+}
+
+.upload-icon {
+    width: 40px;
+    margin-bottom: 0.5rem;
+    opacity: 0.7;
+}
+
+.dropzone-text {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 0.2rem;
+}
+.nombre-archivo {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #555;
+    font-style: italic;
+}
+.contenedor-cinco button:first-child{
+    padding: 0.4rem 1rem;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    font-size: 0.9rem;
+    cursor: pointer;
+    background-color: #0178ff;
+    transition: background-color 0.3s ease;
+}
+.contenedor-cinco button:nth-child(2){
+        padding: 0.4rem 1rem;
+    border-radius: 5px;
+    background-color: white;
+    border: 1px solid #ccc;
+    color: black;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.contenedor-cinco a{
+    padding: 0.4rem 1rem    ;
+    border-radius: 5px  ;
+    background-color: white;
+    border: 1px solid #ccc;
+    color: black;
+    font-size: 0.9rem;
+    cursor: pointer;
+}

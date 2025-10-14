@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/detalle.css}" />
+    <title>Operaciones Crud | Detalle </title>
+</head>
+
+<body>
+    <div layout:fragment="content" class="contenedor">
+        <div class="contendor-titulo">
+            <div>
+                <h2 th:text="${producto.nombreProducto}"></h2>
+            </div>
+            <div>
+                <span th:text="${producto.precioUni}"></span>
+            </div>
+        </div>
+        <div>
+            <img th:src="@{${producto.imagen}}" class="imagen-detalle" />
+        </div>
+        <div class="contendor-descripcion">
+            <h3>Descripcion</h3>
+            <div>
+                <span th:text="${producto.descripcion}"></span>
+            </div>
+        </div>
+        <div class="contendor-detalles">
+            <div class="detalles">
+                <h3>Marca</h3>
+                <p th:text="${producto.marca}"></p>
+            </div>
+            <div class="detalles">
+                <h3>Color</h3>
+                <p th:text="${producto.color}"></p>
+            </div>
+            <div class="detalles">
+                <h3>Categoria</h3>
+                <p th:text="${producto.categoria.nombreCategoria}"></p>
+            </div>
+            <div class="detalles">
+                <h3>Estado</h3>
+                <p th:text="${producto.Estado}"></p>
+            </div>
+            <div class="detalles">
+                <h3>Stock</h3>
+                <p th:text="${producto.stockProducto}"></p>
+            </div>
+            <div class="detalles">
+                <h3>IdProducto</h3>
+                <p th:text="${producto.idProducto}"></p>
+            </div>
+        </div>
+        <div class="contendor-acciones">
+            <a th:href="@{'/producto/desactivar/'+${producto.idProducto}}">Desactivar</a>
+            <a href="/producto/listar">Regresar</a>
+        </div>
+    </div>
+</body>
+
+</html>

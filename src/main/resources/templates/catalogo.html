@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/back.css}" />
+    <link rel="stylesheet" th:href="@{/css/slick.css}" />
+    <link rel="stylesheet" th:href="@{/css/slick-theme.css}" />
+    <link rel="stylesheet" th:href="@{/css/nouislider.min.css}" />
+    <link th:href="@{/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <link rel="icon" th:href="@{/img/plazaico.png}">
+    <title>Plaza Vea</title>
+
+</head>
+
+<body>
+    <div>
+        <div class="header">
+            <div class="header-left">
+                <div class="logo">
+                    Plaza <span class="amarillo-title">V</span>ea
+                </div>
+                <a th:href="@{/plazavea/store}">
+                    <div class="menu-icon">
+                    </div>
+                </a>
+
+            </div>
+            <div class="search-bar">
+                <input type="search" placeholder="¿Qué estás buscando?">
+            </div>
+            <div class="header-right">
+                <div class="icon icon-pedidos">Mis pedidos</div>
+                <div class="icon icon-cuenta">
+
+                    <span sec:authorize="isAnonymous()">
+                        <a href="/login">Iniciar Sesión</a>
+                    </span>
+
+                    <span sec:authorize="isAuthenticated()">
+                        <a href="/mi-cuenta">Mi Cuenta</a>
+                    </span>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="subheader">
+        <div>
+            <ul>
+                <li th:each="cat : ${categorias}">
+                    <a th:href="@{/plazavea/categoria/{idCategoria}(idCategoria=${cat.idCategoria})}"
+                        th:text="${cat.nombreCategoria}"></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+
+    <main layout:fragment="catalogo">
+
+    </main>
+
+    <div class="relleno"></div>
+    <footer id="footer">
+        <div class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-xs-6">
+                        <div class="footer">
+                            <h3 class="footer-title">Sobre nosotros</h3>
+                            <p>
+                                Plaza Vea de Lima es el punto de partida de nuestro emprendimiento. Con entusiasmo y
+                                dedicación,
+                                buscamos crecer ofreciendo soluciones tecnológicas accesibles y de calidad.
+                            </p>
+                            <ul class="footer-links">
+                                <li><a href="#"><i class="fa fa-map-marker"></i>Callao, Callao</a></li>
+                                <li><a href="#"><i class="fa fa-phone"></i>+51 923123123</a></li>
+                                <li><a href="#"><i class="fa fa-envelope-o"></i>Jimenezlayme@gmail.com</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-xs-6">
+                        <div class="footer">
+                            <h3 class="footer-title">Categorias</h3>
+                            <ul class="footer-links">
+                                <li><a th:href="@{/plazavea/notebook}">Notebook</a></li>
+                                <li><a th:href="@{/plazavea/smarthphones}">Smartphones</a></li>
+                                <li><a th:href="@{/plazavea/camara}">Camaras</a></li>
+                                <li><a th:href="@{/plazavea/accesorios}">Accesorios</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="clearfix visible-xs"></div>
+
+                    <div class="col-md-3 col-xs-6">
+                        <div class="footer">
+                            <h3 class="footer-title">Informacion</h3>
+                            <ul class="footer-links">
+                                <li><a th:href="@{/plazavea/nosotros}">Sobre Nosotros</a></li>
+                                <li><a th:href="@{/plazavea/privacidad}">Política de privacidad</a></li>
+                                <li><a th:href="@{/plazavea/terminos}">Términos y condiciones</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-xs-6">
+                        <div class="footer">
+                            <h3 class="footer-title">Servicios</h3>
+                            <ul class="footer-links">
+                                <li><a href="#">Mi cuenta</a></li>
+                                <li><a href="#">Ver Carrito</a></li>
+                                <li><a href="#">Lista de deseos</a></li>
+                                <li><a href="#">Seguir mi pedido</a></li>
+                                <li><a href="#">Ayuda</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="bottom-footer" class="section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <p>Backend por Leonardo</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/slick.min.js}"></script>
+    <script th:src="@{/js/nouislider.min.js}"></script>
+    <script th:src="@{/js/jquery.zoom.min.js}"></script>
+    <script th:src="@{/js/main.js}"></script>
+</body>
+
+</html>

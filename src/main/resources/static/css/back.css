@@ -1,0 +1,134 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: sans-serif; }
+
+    .header {
+      background: #cc1e1e;
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .menu-icon::before { content: "\2630"; font-size: 24px; cursor: pointer; }
+    .search-bar {
+      flex: 1;
+      max-width: 600px;
+      margin: 10px;
+      position: relative;
+    }
+    .search-bar input {
+      width: 100%;
+      padding: 10px 40px 10px 20px;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+    }
+    .search-icon::before {
+      content: "\1F50D";
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 18px;
+      color: gray;
+    }
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-size: 14px;
+    }
+    .icon::before { margin-right: 5px; }
+    .icon-pedidos::before { content: "\1F4E6"; }
+    .icon-cuenta::before { content: "\1F464"; }
+    .icon-carrito::before { content: "\1F6D2"; position: relative; }
+    .icon-cart::after {
+      content: "0";
+      position: absolute;
+      top: -8px;
+      right: -10px;
+      background: white;
+      color: #cc1e1e;
+      font-size: 12px;
+      padding: 2px 6px;
+      border-radius: 50%;
+    }
+
+    .subheader {
+      background: #f5f5f5;
+      padding: 8px 20px;
+      display: flex;
+      gap: 20px;
+      font-size: 14px;
+    }
+    .subheader a {
+      text-decoration: none;
+      color: black;
+    }
+
+
+    .carousel {
+      position: relative;
+      width: 100%;
+      max-width: auto;
+      height: 400px;
+      margin: auto;
+      overflow: hidden;
+    }
+    .slides {
+      display: flex;
+      width: auto;
+      height: 100%;
+      animation: slide 10s infinite;
+    }
+    .slide {
+      width: 100%;
+      flex-shrink: 0;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+  
+    .product {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .product img {
+      max-height: 400px;
+      
+    }
+
+    @keyframes slide {
+      0%, 40% { transform: translateX(0); }
+      50%, 90% { transform: translateX(-100%); }
+      100% { transform: translateX(0); }
+    }
+
+    footer p, footer strong, footer b, footer {
+    color: #b0b0b0;
+}
+
+.relleno{
+  margin: 4rem;
+}
+
+.search-bar input::placeholder {
+  color: #999 !important;
+  opacity: 1 !important;
+}

@@ -1,0 +1,17 @@
+.container{
+    margin: auto;
+}
+
+h1{
+    color: red;
+    font-size: 7rem;
+    
+}
+
+img{
+    width: 70%;
+}
+
+p{
+    margin-top: 2rem;
+}

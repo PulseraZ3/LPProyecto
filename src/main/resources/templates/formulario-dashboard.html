@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script th:src="@{/js/dashboard.js}"></script>
+    <script th:src="@{/js/metodoPago.js}"></script>
+    <script th:src="@{/js/categoriaVendida.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}" />
+
+    <title>Admin Page | DashBoard</title>
+</head>
+
+<body>
+    <div layout:fragment="content">
+        <div class="grid-container">
+            <div class="grid-item">
+                <div class="card-title">Ventas por Día</div>
+                <div class="card-subtitle">Últimos 7 días</div>
+                <canvas id="ventasChart"></canvas>
+            </div>
+
+            <div class="grid-item">
+                <div class="card-title">Métodos de Pago</div>
+                <div class="card-subtitle">Esta semana</div>
+                <canvas id="metodoPagoChart"></canvas>
+            </div>
+
+            <div class="grid-item">
+                <div class="card-title">Categoria mas Vendida</div>
+                <div class="card-subtitle">Este mes</div>
+                <canvas id="categoriaVendidaChart"></canvas>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

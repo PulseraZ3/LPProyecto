@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Plaza Vea | Sign in</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-blue-50">
+    <div class="flex justify-center items-center h-screen">
+        <div class="rounded-lg p-14 bg-white shadow-2xl">
+            <p class="font-bold text-2xl font-mono text-left">Inicia Sesión</p>
+            <p class="text-slate-400 font-sans mb-4">Introduce tu correo y contraseña</p>
+            <form th:action="@{/login}" method="post" class="flex flex-col">
+                <input class="border border-slate-300 text-left text-sm mb-4 p-3 rounded-md bg-slate-50 font-sans w-80"
+                    type="email" placeholder="Email" name="username" required />
+                
+                <input class="border border-slate-300 text-left text-sm p-3 rounded-md bg-slate-50 font-sans"
+                    type="password" placeholder="Contraseña" name="password" required />
+                
+                <input
+                    class="border cursor-pointer bg-indigo-500 hover:bg-indigo-600 text-white p-2 rounded-full mt-3 transition-all shadow-lg"
+                    type="submit" value="Inicia Sesión" />
+
+                <a class="mt-2 mb-6 text-left text-indigo-400 hover:text-indigo-500" href="#">¿Olvidaste tu contraseña?</a>
+            </form>
+
+            <hr>
+
+            <div class="text-center mt-2">
+                <a class="text-indigo-400 hover:text-indigo-500" th:href="@{/usuario/registrar}">Crea tu Cuenta</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Registrar Usuario</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-blue-50">
+    <div class="flex justify-center items-center h-screen">
+        <div class="rounded-lg p-14 bg-white shadow-2xl">
+            <p class="font-bold text-2xl font-mono text-left mb-1">Registrar Usuario</p>
+            <p class="text-slate-400 font-sans mb-4">Completa los campos para registrarte</p>
+
+            <form th:action="@{/usuario/registrar}" th:object="${usuario}" method="post" class="flex flex-col">
+
+                <input type="text" id="nombreUsuario" th:field="*{nombreUsuario}" required
+                    placeholder="Nombre de Usuario"
+                    class="border border-slate-300 text-left text-sm mb-4 p-3 rounded-md bg-slate-50 font-sans w-80" />
+
+                <input type="email" id="correoUsuario" th:field="*{correoUsuario}" required
+                    placeholder="Correo Electrónico"
+                    class="border border-slate-300 text-left text-sm mb-4 p-3 rounded-md bg-slate-50 font-sans w-80" />
+
+                <input type="password" id="contraseña" th:field="*{contraseña}" required
+                    placeholder="Contraseña"
+                    class="border border-slate-300 text-left text-sm mb-4 p-3 rounded-md bg-slate-50 font-sans w-80" />
+
+                <input type="number" id="telefonoUsuario" th:field="*{telefonoUsuario}" required
+                    placeholder="Teléfono"
+                    class="border border-slate-300 text-left text-sm mb-4 p-3 rounded-md bg-slate-50 font-sans w-80" />
+
+                <input type="text" id="direccionUsuario" th:field="*{direccionUsuario}" required
+                    placeholder="Dirección"
+                    class="border border-slate-300 text-left text-sm mb-4 p-3 rounded-md bg-slate-50 font-sans w-80" />
+
+                <select id="distrito" th:field="*{distrito}" required
+                    class="border border-slate-300 text-left text-sm mb-4 p-3 rounded-md bg-slate-50 font-sans w-80">
+                    <option value="">Seleccione un distrito</option>
+                    <option th:each="dis : ${distritos}" th:value="${dis.idDistrito}" th:text="${dis.nombreDistrito}">
+                    </option>
+                </select>
+
+                <input type="submit" value="Registrar"
+                    class="border cursor-pointer bg-indigo-500 hover:bg-indigo-600 text-white p-2 rounded-full mt-3 transition-all shadow-lg" />
+
+            </form>
+
+            <div class="text-center mt-4">
+                <a class="text-indigo-400 hover:text-indigo-500" th:href="@{/usuario/login}">¿Ya tienes una cuenta? Inicia
+                    Sesión</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
